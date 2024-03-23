@@ -1,10 +1,63 @@
-
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800");
 
-html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, div
-pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q,
-s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li,
-figure, header, nav, section, article, aside, footer, figcaption {
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+div pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+font,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+figure,
+header,
+nav,
+section,
+article,
+aside,
+footer,
+figcaption {
   margin: 0;
   padding: 0;
   border: 0;
@@ -32,13 +85,20 @@ html[xmlns] .clearfix {
   height: 1%;
 }
 
-ul, li {
+ul,
+li {
   padding: 0;
   margin: 0;
   list-style: none;
 }
 
-header, nav, section, article, aside, footer, hgroup {
+header,
+nav,
+section,
+article,
+aside,
+footer,
+hgroup {
   display: block;
 }
 
@@ -46,7 +106,8 @@ header, nav, section, article, aside, footer, hgroup {
   box-sizing: border-box;
 }
 
-html, body {
+html,
+body {
   font-family: 'Open Sans', sans-serif;
   -ms-text-size-adjust: 100%;
   -webkit-font-smoothing: antialiased;
@@ -57,7 +118,12 @@ a {
   text-decoration: none !important;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   margin-top: 0px;
   margin-bottom: 0px;
   font-weight: 700;
@@ -99,7 +165,8 @@ body {
 }
 
 .templatemo-feature {
-	max-width: 66px; border-radius: 50%;
+  max-width: 66px;
+  border-radius: 50%;
 }
 
 .main-button a {
@@ -146,7 +213,7 @@ body {
 
 .section {
   padding-top: 30px;
-  margin-top: 90px;
+  /* margin-top: 90px; */
 }
 
 
@@ -192,7 +259,7 @@ Pre-loader Style
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0,0,0,0.99);
+  background-color: rgba(0, 0, 0, 0.99);
   display: -webkit-box;
   display: flex;
   -webkit-box-align: center;
@@ -214,29 +281,29 @@ Pre-loader Style
 
 @-webkit-keyframes dot {
   50% {
-      -webkit-transform: translateX(96px);
-      transform: translateX(96px);
+    -webkit-transform: translateX(96px);
+    transform: translateX(96px);
   }
 }
 
 @keyframes dot {
   50% {
-      -webkit-transform: translateX(96px);
-      transform: translateX(96px);
+    -webkit-transform: translateX(96px);
+    transform: translateX(96px);
   }
 }
 
 @-webkit-keyframes dots {
   50% {
-      -webkit-transform: translateX(-31px);
-      transform: translateX(-31px);
+    -webkit-transform: translateX(-31px);
+    transform: translateX(-31px);
   }
 }
 
 @keyframes dots {
   50% {
-      -webkit-transform: translateX(-31px);
-      transform: translateX(-31px);
+    -webkit-transform: translateX(-31px);
+    transform: translateX(-31px);
   }
 }
 
@@ -290,12 +357,12 @@ Header Style
 
 .background-header {
   background-color: #fff;
-  height: 80px!important;
-  position: fixed!important;
-  top: 0!important;
+  height: 80px !important;
+  position: fixed !important;
+  top: 0 !important;
   left: 0;
   right: 0;
-  box-shadow: 0px 0px 10px rgba(0,0,0,0.15)!important;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.15) !important;
   -webkit-transition: all .5s ease 0s;
   -moz-transition: all .5s ease 0s;
   -o-transition: all .5s ease 0s;
@@ -303,9 +370,9 @@ Header Style
 }
 
 .header-area {
-  position: absolute;
+  /* position: absolute; */
   background: rgb(0, 227, 68);
-  background: linear-gradient(90deg, rgb(157, 234, 14) 0%, rgb(79, 108, 61) 100%);
+  background: linear-gradient(90deg, rgb(255, 255, 255) 0%, rgb(78, 199, 3) 100%);
   height: 110px;
   top: 57px;
   left: 0;
@@ -334,6 +401,7 @@ Header Style
 
 .background-header .main-nav .logo {
   margin-top: 10px;
+
 }
 
 .header-area .main-nav .nav {
@@ -462,7 +530,7 @@ Header Style
   opacity: 1;
   display: block;
   background: #eee;
-  color: #2a2a2a!important;
+  color: #2a2a2a !important;
   padding-left: 20px;
   height: 40px;
   line-height: 40px;
@@ -482,7 +550,7 @@ Header Style
 
 .header-area .main-nav .nav li.has-sub ul li a:hover {
   background: #fff;
-  color: #37e403!important;
+  color: #37e403 !important;
   padding-left: 25px;
 }
 
@@ -610,6 +678,7 @@ Header Style
     padding-left: 10px;
     padding-right: 10px;
   }
+
   .header-area .main-nav:before {
     display: none;
   }
@@ -620,30 +689,37 @@ Header Style
     height: auto;
     flex-basis: 100%;
   }
+
   .header-area .main-nav .logo {
     position: absolute;
     left: 30px;
     top: 0px;
   }
+
   .background-header .main-nav .logo {
     top: 0px;
   }
+
   .background-header .main-nav .border-button {
     top: 0px !important;
   }
+
   .header-area .main-nav .border-button {
     position: absolute;
     top: 15px;
     right: 70px;
   }
+
   .header-area.header-sticky .nav li a:hover,
   .header-area.header-sticky .nav li a.active {
-    color: #37e403!important;
+    color: #37e403 !important;
     opacity: 1;
   }
+
   .header-area.header-sticky .nav li.search-icon a {
     width: 100%;
   }
+
   .header-area {
     background-color: #f7f7f7;
     padding: 0px 15px;
@@ -651,18 +727,23 @@ Header Style
     box-shadow: none;
     text-align: center;
   }
+
   .header-area .container {
     padding: 0px;
   }
+
   .header-area .logo {
     margin-left: 0px;
   }
+
   .header-area .menu-trigger {
     display: block !important;
   }
+
   .header-area .main-nav {
     overflow: hidden;
   }
+
   .header-area .main-nav .nav {
     float: none;
     width: 100%;
@@ -673,15 +754,19 @@ Header Style
     transition: all 0s ease 0s;
     margin-left: 0px;
   }
+
   .header-area .main-nav .nav li:first-child {
     border-top: 1px solid #eee;
   }
+
   .header-area.header-sticky .nav {
     margin-top: 100px !important;
   }
+
   .background-header.header-sticky .nav {
     margin-top: 80px !important;
   }
+
   .header-area .main-nav .nav li {
     width: 100%;
     background: #fff;
@@ -689,6 +774,7 @@ Header Style
     padding-left: 0px !important;
     padding-right: 0px !important;
   }
+
   .header-area .main-nav .nav li a {
     height: 50px !important;
     line-height: 50px !important;
@@ -697,10 +783,12 @@ Header Style
     background: #f7f7f7 !important;
     color: #191a20 !important;
   }
+
   .header-area .main-nav .nav li a:hover {
     background: #eee !important;
-    color: #37e403!important;
+    color: #37e403 !important;
   }
+
   .header-area .main-nav .nav li.has-sub ul.sub-menu {
     position: relative;
     visibility: inherit;
@@ -713,23 +801,29 @@ Header Style
     height: 0px;
     transition: all 0s;
   }
+
   .header-area .main-nav .nav li.submenu ul li a {
     font-size: 12px;
     font-weight: 400;
   }
+
   .header-area .main-nav .nav li.submenu ul li a:hover:before {
     width: 0px;
   }
+
   .header-area .main-nav .nav li.has-sub ul.sub-menu {
     height: auto;
   }
+
   .header-area .main-nav .nav li.has-sub:after {
     color: #3B566E;
     right: 30px;
     font-size: 14px;
     top: 15px;
   }
-  .header-area .main-nav .nav li.submenu:hover ul, .header-area .main-nav .nav li.submenu:focus ul {
+
+  .header-area .main-nav .nav li.submenu:hover ul,
+  .header-area .main-nav .nav li.submenu:focus ul {
     height: 0px;
   }
 }
@@ -793,8 +887,40 @@ Banner Style
 */
 
 .main-banner {
+  background-image: url("../images/spices-01.jpg");
+  height: 100%;
   position: relative;
-  padding: 295px 0px 185px 0px;
+  padding: 180px 0px 2rem 0px;
+  background-size: cover;
+  color: #e0e0e0;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  /* Adjust opacity here (0.5 means 50% opacity) */
+}
+
+.overlay-content {
+  position: relative;
+  z-index: 1;
+  /* Ensure content is above the overlay */
+  color: white;
+  /* Set text color to white for better visibility */
+}
+
+.main-banner .caption h4 em {
+  margin-left: 200px;
+  /* Adjust the margin to shift "Eat" towards the center */
+}
+
+.main-banner .caption h4 span {
+  margin-left: 400px;
+  /* Adjust the margin to shift "No Exercise" further towards the right */
 }
 
 .main-banner:after {
@@ -807,7 +933,7 @@ Banner Style
   z-index: -1;
 }
 
-.main-banner::before {
+/* .main-banner::before {
   content: url(../images/banner-left.png);
   top: -1px;
   left: 0;
@@ -815,7 +941,7 @@ Banner Style
   width: 194px;
   height: 655px;
   z-index: -1;
-}
+} */
 
 .main-banner h6 {
   font-size: 20px;
@@ -1012,6 +1138,18 @@ Projects Style
   opacity: 1;
 }
 
+/* Rotation effect on hover */
+.projects .item {
+  transition: transform 0.3s ease-in-out;
+  /* Adding transition effect */
+}
+
+.projects .item:hover {
+  transform: scale(1.1);
+  box-shadow: #191a20;
+  /* Rotating the image on hover */
+}
+
 /* 
 ---------------------------------------------
 Infos Style
@@ -1019,12 +1157,14 @@ Infos Style
 */
 
 .infos {
-  background-image: url(../images/infos-bg.jpg);
+  background: rgb(0, 227, 68);
+    background: linear-gradient(90deg, rgb(255, 255, 255) 0%, rgb(78, 199, 3) 100%);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;
-  padding: 120px 0px;
-  margin-top: 120px;
+  padding: 100px 100px;
+  height:100vh
+  /* margin-top: 120px; */
 }
 
 .infos .main-content {
@@ -1034,7 +1174,7 @@ Infos Style
 }
 
 .infos .main-content .left-image {
-  background-image: url(../images/left-infos.jpg);
+  background-image: url(../images/about-img-02.jpg);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;
@@ -1215,8 +1355,8 @@ Contact Style
 
 .contact-us-content .more-info {
   text-align: center;
-  background: rgb(85,0,227);
-  background: linear-gradient(90deg, rgba(85,0,227,1) 0%, rgba(198,61,255,1) 100%);
+  background: rgb(85, 0, 227);
+  background: linear-gradient(90deg, rgb(5, 138, 62) 0%, rgb(125, 244, 163) 100%);
   border-radius: 0px 0px 23px 23px;
   padding: 45px 30px 15px 30px;
 }
@@ -1258,6 +1398,38 @@ footer p a {
 
 footer p a:hover {
   color: #37e403;
+}
+.footer-top {
+  display: flex;
+  justify-content: space-between;
+  /* Align lists to the left and right */
+}
+
+.left-list {
+  text-align: left;
+  /* Align items to the left */
+}
+
+.right-list {
+  text-align: right;
+  /* Align items to the right */
+}
+
+.footer-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-link {
+  color: white;
+  /* Change link color */
+  text-decoration: none;
+}
+
+.footer-link:hover {
+  text-decoration: underline;
+  /* Underline on hover */
 }
 
 /* 
@@ -1703,13 +1875,13 @@ Most Asked Style
 }
 
 .most-asked .accordion-head {
-  padding: 35px 0px !important;  
+  padding: 35px 0px !important;
   font-size: 22px;
   font-weight: 700;
   color: #2a2a2a;
   cursor: pointer;
   transition: color 200ms ease-in-out;
-  
+
 }
 
 @media screen and (min-width: 768px) {
@@ -1741,7 +1913,7 @@ Most Asked Style
   border-bottom: 1px solid #fff;
 }
 
-.most-asked .accordion-body > .content p {
+.most-asked .accordion-body>.content p {
   padding: 0px 0px 30px 0px;
   padding-top: 0;
 }
@@ -1804,43 +1976,55 @@ body {
   .pre-header {
     display: none;
   }
+
   .header-area {
     top: 0px;
   }
+
   .main-banner {
     margin-top: 100px;
   }
+
   .header-area .main-nav .nav li:nth-child(4) {
     padding-right: 0px !important;
   }
+
   .header-area .main-nav .nav li {
     background: #f7f7f7;
   }
+
   .header-area .main-nav .nav li.has-sub ul.sub-menu {
     display: none;
   }
-  .main-banner  {
+
+  .main-banner {
     padding: 185px 0px;
   }
+
   .main-banner h4 {
     font-size: 36px;
     line-height: 44px;
   }
+
   .main-banner span {
     margin: 0px 3px 0px 3px;
   }
+
   .main-banner .main-button a,
   .main-banner .second-button a {
     padding: 12px 20px;
   }
+
   .projects .item .down-content {
     padding: 25px 15px 15px 15px;
   }
+
   .projects .item .down-content h4 {
     text-align: center;
     width: 100%;
     font-size: 18px;
   }
+
   .projects .item .down-content a {
     top: 0;
     right: auto;
@@ -1854,19 +2038,24 @@ body {
     padding-right: 10px;
     margin-right: 10px;
   }
+
   .pre-header .left-info ul li a {
     font-size: 13px;
   }
+
   .main-banner .caption {
     padding: 30px !important;
     text-align: center;
   }
+
   .main-banner p {
     padding-right: 0%;
   }
+
   .main-banner .line-dec {
     margin: 30px auto 20px auto;
   }
+
   .projects .owl-nav {
     text-align: center;
     right: auto;
@@ -1874,61 +2063,78 @@ body {
     left: 50%;
     transform: translateX(-50%);
   }
+
   .projects .section-heading {
     text-align: center;
   }
+
   .projects .section-heading .line-dec {
     margin: 0px auto 20px auto;
   }
+
   .infos .main-content .left-image img {
     display: inline-block;
   }
+
   .contact-us .contact-us-content,
   .contact-us .contact-us-content #contact-form {
     padding: 30px;
   }
+
   .contact-us #map {
     margin-bottom: 30px;
   }
+
   .contact-us-content .more-info .info-item {
     margin-bottom: 45px;
   }
+
   .page-heading img {
     margin-top: 45px;
   }
+
   .video-info .section-heading {
     padding: 60px 0px 30px 0px;
   }
+
   .video-info .skills {
     padding: 0px;
   }
+
   .happy-clients .naccs .menu div {
     width: 100% !important;
     margin: 15px 0px;
   }
+
   .happy-clients .naccs .menu {
     padding: 15px;
   }
+
   .happy-clients ul.nacc li img {
     padding-left: 0px;
     margin-top: 45px;
   }
+
   .cta h4,
   .cta .main-button {
     text-align: center;
   }
+
   .happy-steps .steps .item {
     margin-right: 0px;
     border-right: none;
     margin-bottom: 30px;
     padding-bottom: 30px;
-    border-bottom: 1px solid rgba(250, 250, 250, 0.2);;
+    border-bottom: 1px solid rgba(250, 250, 250, 0.2);
+    ;
   }
+
   .happy-steps .steps .last-item {
     border-bottom: none;
     padding-bottom: 0px;
     margin-bottom: 0px;
   }
+
   .most-asked #free-quote {
     margin-left: 0px;
     margin-top: 45px;
@@ -2080,3 +2286,37 @@ body {
   border: 1px solid var(--gold-crayola);
   transform: rotate(45deg);
 }
+
+    body::-webkit-scrollbar {
+      width: 10px;
+    }
+  
+    /* Track (the part where the scrollbar runs) */
+    body::-webkit-scrollbar-track {
+      background-color: transparent;
+      /* Make the track transparent */
+      border-radius: 10px;
+      /* Set border radius */
+    }
+  
+    /* Handle (the draggable part of the scrollbar) */
+    body::-webkit-scrollbar-thumb {
+      background: #adff2f;
+      /* Color of the scrollbar handle */
+      border-radius: 10px;
+      /* Set border radius */
+    }
+  
+    /* Handle on hover */
+    body::-webkit-scrollbar-thumb:hover {
+      background: #812FFF;
+      /* Darker color when hovered */
+    }
+  
+    /* Content styling for scrollbar demonstration */
+    .content {
+      height: 2000px;
+      /* Add enough content to make scrollbar visible */
+      background-color: #f0f0f0;
+      padding: 20px;
+    }
