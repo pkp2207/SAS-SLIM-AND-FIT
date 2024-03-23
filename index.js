@@ -36,11 +36,14 @@ app.get('/', async (req, res) => {
   } else{
     let data = req.oidc.user;
     let userdata = await user.find({email: data.email});
-    console.log(userdata);
+    // console.log(userdata);
    if(userdata.length == 0) {
     res.redirect("/details");
    }else{
-     res.render("homepage.ejs");
+    let userInfo = req.oidc.user;
+    let userData = await user.find({email:userInfo.email});
+    console.log(userData);
+     res.render("homepage.ejs",{userData});
    }
   }
 });
