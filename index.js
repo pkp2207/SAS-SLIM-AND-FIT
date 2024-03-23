@@ -3,16 +3,17 @@ const app = express();
 const bp = require('body-parser');
 const user = require('./models/userschema.js');
 const mongoose = require('mongoose');
-
+const path = require('path');
 const mongoDB = 'mongodb+srv://httwarriors12:akshat@cluster0.n9sknas.mongodb.net/hacktt';
 mongoose.connect(mongoDB);
 
 app.use(bp.urlencoded({extended:true}));
 app.use(express.static(__dirname ));
 app.set('view engine', 'ejs');
+app.set("views", path.join(__dirname, "/views"));
 
-var nu = new user({name:"fhkgf",email:"ghj",phno:"985585"});
-nu.save();
+// var nu = new user({name:"fhkgf",email:"ghj",phno:"985585"});
+// nu.save();
 const { auth } = require('express-openid-connect');
 const config = {
   authRequired: false,
@@ -31,6 +32,15 @@ const { requiresAuth } = require('express-openid-connect');
 app.get('/', (req, res) => {
   res.send(req.oidc.isAuthenticated() ? 'Logged in' : 'Logged out');
 });
+
+app.get("/admin", async (req, res) => {
+  res.render("index");
+  let totalUsers = await user.find({});
+  console.log(totalUsers);
+  res.render("index",totalUsers);
+})
+
+
 app.get('/profile', requiresAuth(), async(req, res) => {
     var datar = req.oidc.user;
     //res.send(datar.email);
