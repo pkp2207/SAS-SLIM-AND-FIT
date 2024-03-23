@@ -343,6 +343,8 @@ nav.close ~ .dashboard .top{
 .activity .activity-data{
     display: flex;
 }
+
+
 .activity-data .data{
     display: flex;
     flex-direction: column;
@@ -455,4 +457,12 @@ nav.close ~ .dashboard .top{
         left: 0;
         width: 100%;
     }
+}
+
+.hide{
+    display: none;
+}
+
+.show{
+    display: block;
 }
