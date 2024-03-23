@@ -96,7 +96,7 @@ app.patch('/editdetails/:id', async (req, res) => {
   let {username,age,gender,height,weight,phoneno,reffered,state} = req.body;
   let data = await user.findByIdAndUpdate(id,{name:username,phoneno:phoneno, age:age,gender:gender,height:height,weight:weight,refer:reffered,state:state});
   console.log(data);
-  res.redirect("/editdetails");
+  res.redirect("/");
 })
 
 
