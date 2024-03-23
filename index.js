@@ -36,8 +36,7 @@ app.get('/', (req, res) => {
 
 
 app.get("/admin", async (req, res) => {
-  // res.render("index");
-  let totalUsers = await user.find({});
+  let totalUsers = await user.find();
   console.log(totalUsers);
   res.render("index.ejs",{totalUsers});
 })
