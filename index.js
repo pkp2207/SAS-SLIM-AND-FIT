@@ -29,10 +29,37 @@ app.use(auth(config));
 
 // req.isAuthenticated is provided from the auth router
 const { requiresAuth } = require('express-openid-connect');
-app.get('/', (req, res) => {
-  
-  res.send(req.oidc.isAuthenticated() ? res.render('homepage.ejs') : res.render('once.ejs'));
+app.get('/', async (req, res) => {
+  let verified = req.oidc.isAuthenticated();
+  if(!verified){
+    res.render("once.ejs");
+  } else{
+    let data = req.oidc.user;
+    let userdata = await user.find({email: data.email});
+    console.log(userdata);
+   if(userdata.length == 0) {
+    res.redirect("/details");
+   }else{
+     res.render("homepage.ejs");
+   }
+  }
 });
+
+app.get('/details', (req, res) => {
+  if(!req.oidc.isAuthenticated()){
+    res.redirect("/login");
+  }else{
+    res.render("aftersignup.ejs");
+  }
+})
+
+app.post("/details",async (req,res)=> {
+  let {username,age,gender,height,weight,phoneno,reffered,state} = req.body;
+  let email = req.oidc.user.email;
+  const newUser=new user({name:username,email:email,phoneno:phoneno, age:age,gender:gender,height:height,weight:weight,refer:reffered,state:state});
+  await newUser.save();
+  res.redirect('/');
+})
 
 
 app.get("/admin", async (req, res) => {
@@ -44,8 +71,7 @@ app.get("/admin", async (req, res) => {
 app.get('/profile', requiresAuth(), async(req, res) => {
     var datar = req.oidc.user;
     //res.send(datar.email);
-    
-        console.log(datar.email);
+    console.log(datar.email);
     let a=await user.find({email:datar.email});
     console.log(a);
     res.render('index.ejs',{a:a}) 
@@ -54,6 +80,7 @@ app.get('/profile', requiresAuth(), async(req, res) => {
 app.listen(3000,()=>{
     console.log("listening on http://localhost:3000");
 })
+
 
 
 
