@@ -19,7 +19,7 @@ const config = {
   authRequired: false,
   auth0Logout: true,
   secret: 'a long, randomly-generated string stored in env',
-  baseURL: 'http://localhost:3000',
+  baseURL: 'http://localhost:3000/',
   clientID: 'ouN2IFII0oE7eWZF3UgPaaaXuLe6nnK4',
   issuerBaseURL: 'https://dev-ktrnto3xhx5pfgg2.us.auth0.com'
 };
@@ -30,8 +30,10 @@ app.use(auth(config));
 // req.isAuthenticated is provided from the auth router
 const { requiresAuth } = require('express-openid-connect');
 app.get('/', (req, res) => {
-  res.send(req.oidc.isAuthenticated() ? 'Logged in' : 'Logged out');
+  
+  res.send(req.oidc.isAuthenticated() ? res.render('homepage.ejs') : res.render('once.ejs'));
 });
+
 
 app.get("/admin", async (req, res) => {
   // res.render("index");
@@ -39,7 +41,6 @@ app.get("/admin", async (req, res) => {
   console.log(totalUsers);
   res.render("index.ejs",{totalUsers});
 })
-
 
 app.get('/profile', requiresAuth(), async(req, res) => {
     var datar = req.oidc.user;
