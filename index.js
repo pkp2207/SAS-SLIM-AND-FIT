@@ -5,6 +5,7 @@ const user = require('./models/userschema.js');
 const mongoose = require('mongoose');
 const path = require('path');
 const mongoDB = 'mongodb+srv://httwarriors12:akshat@cluster0.n9sknas.mongodb.net/hacktt';
+const methodOverride = require("method-override");
 mongoose.connect(mongoDB);
 
 app.use(bp.urlencoded({extended:true}));
@@ -26,6 +27,7 @@ const config = {
 
 // auth router attaches /login, /logout, and /callback routes to the baseURL
 app.use(auth(config));
+app.use(methodOverride("_method"));
 
 // req.isAuthenticated is provided from the auth router
 const { requiresAuth } = require('express-openid-connect');
@@ -50,11 +52,24 @@ app.get('/', async (req, res) => {
   }
 });
 
-app.get('/details', (req, res) => {
+app.get('/details', async (req, res) => {
   if(!req.oidc.isAuthenticated()){
     res.redirect("/login");
   }else{
     res.render("aftersignup.ejs");
+  }
+})
+
+
+
+app.get('/editdetails',async (req, res) => {
+  if(!req.oidc.isAuthenticated()){
+    res.redirect("/login");
+  }else{
+    let data = req.oidc.user;
+    let userData = await user.find({email:data.email});
+    console.log(userData);
+    res.render("editDetails.ejs",{userData});
   }
 })
 
@@ -64,6 +79,15 @@ app.post("/details",async (req,res)=> {
   const newUser=new user({name:username,email:email,phoneno:phoneno, age:age,gender:gender,height:height,weight:weight,refer:reffered,state:state});
   await newUser.save();
   res.redirect('/');
+})
+
+app.patch('/editdetails/:id', async (req, res) => {
+  let {id} = req.params;
+  id = id.toString();
+  let {username,age,gender,height,weight,phoneno,reffered,state} = req.body;
+  let data = await user.findByIdAndUpdate(id,{name:username,phoneno:phoneno, age:age,gender:gender,height:height,weight:weight,refer:reffered,state:state});
+  console.log(data);
+  res.redirect("/editdetails");
 })
 
 

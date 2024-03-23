@@ -82,12 +82,16 @@
               <li class="scroll-to-section"><a href="#top" class="active">Home</a></li>
               <li class="scroll-to-section"><a href="#infos">About Us</a></li>
               <li class="scroll-to-section"><a href="#contact">Contact</a></li>
-              <li class="scroll-to-section" style="display: flex; justify-content: center;align-items: center;"><a href="#">
-                <%=userData[0].name%></a>
-                <select name="" id="" style="display: inline; height: 2rem;"></select>
+              <li class="scroll-to-section" style="display: flex; justify-content: center;align-items: center; gap:1rem">
+                <a href="/editdetails>"> <%=userData[0].name%></a>
+                <a href="/editdetails"><img src="<%=photo%>" style="height: 2.5rem; width: 2.5rem; border-radius: 50%;"></a>
+                <a href="/logout">Logout</a>
+                <!-- <label for="profile"></label>
+                <select name="profile" id="" style="position:relative; height: 2rem; left: -2.9rem ;z-index: -1;">
+                  <option value="">" "</option>
+                  <option value=""><a href="/details/">View Profile</a></option>
+                </select> -->
               </li>
-              <li class="scroll-to-section" ><a href="#"><img src="<%=photo%>"></a></li>
-
 
 
               <!-- <li class="has-sub">
