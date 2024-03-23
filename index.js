@@ -4,6 +4,9 @@ const bp = require('body-parser');
 const user = require('./models/userschema.js');
 const mongoose = require('mongoose');
 const path = require('path');
+const accountSid = 'AC2432ec38ded5be3df0578d9c77918fcf';
+const authToken = 'afaf98e80299af84c01583b3e886087c';
+const client = require('twilio')(accountSid, authToken);
 const mongoDB = 'mongodb+srv://httwarriors12:akshat@cluster0.n9sknas.mongodb.net/hacktt';
 const methodOverride = require("method-override");
 mongoose.connect(mongoDB);
@@ -24,10 +27,16 @@ const config = {
   clientID: 'ouN2IFII0oE7eWZF3UgPaaaXuLe6nnK4',
   issuerBaseURL: 'https://dev-ktrnto3xhx5pfgg2.us.auth0.com'
 };
+let date = mongoose.model('Date', {msg:String,time:String});
+let nd = new date({msg:"dhatt teri maa ki chu",time:'2024-03-24T01:59:02.208Z'})
+// nd.save();
 
 // auth router attaches /login, /logout, and /callback routes to the baseURL
 app.use(auth(config));
 app.use(methodOverride("_method"));
+var serverdate = new Date();
+
+
 
 // req.isAuthenticated is provided from the auth router
 const { requiresAuth } = require('express-openid-connect');
@@ -115,7 +124,7 @@ app.listen(3000,()=>{
 
 //TWILIO
 // const accountSid = 'AC2432ec38ded5be3df0578d9c77918fcf';
-// const authToken = '[AuthToken]';
+// const authToken = afaf98e80299af84c01583b3e886087c;
 // const client = require('twilio')(accountSid, authToken);
 
 // client.messages
