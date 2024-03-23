@@ -41,9 +41,11 @@ app.get('/', async (req, res) => {
     res.redirect("/details");
    }else{
     let userInfo = req.oidc.user;
+    // console.log(userInfo);
+    let photo = userInfo.picture;
     let userData = await user.find({email:userInfo.email});
     console.log(userData);
-     res.render("homepage.ejs",{userData});
+     res.render("homepage.ejs",{userData:userData,photo:photo});
    }
   }
 });
