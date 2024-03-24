@@ -28,14 +28,10 @@ messagebroadcast.addEventListener("click",()=>{
     messagediv.classList.remove("hide");
 })
 
-
-
-
-const select = document.getElementById('country');
-
-    // Add options to the select element
-    countries.forEach(country => {
-      const option = document.createElement('option');
-      option.textContent = country;
-      select.appendChild(option);
-    });
+let date = new Date();
+let span = document.querySelectorAll("#clock");
+date=date.toString();
+// date = date.slice(0,15);
+console.log(span);
+span[0].innerHTML= date;
+span[1].innerHTML= date;

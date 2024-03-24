@@ -219,6 +219,19 @@ app.post('/whatsapp', async (req, res) => {
   res.redirect("/admin");
 })
 
+function numofuniqueUsers(data) {
+
+}
+
+app.get("/admin/getuniquevisitors/",async (req, res) => {
+  let {admintime} = req.body;
+  console.log(admintime);
+  let userData = await user.find({});
+  // console.log(userData)
+  // numofuniqueUsers(userData);
+  res.redirect("/admin");
+})
+
 app.listen(3000,()=>{
     console.log("listening on http://localhost:3000");
 })

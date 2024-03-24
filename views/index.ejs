@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
     <!--font awesome link-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    
+
 
     <title>Admin Dashboard Panel</title>
 
@@ -54,7 +54,7 @@
                         <span class="link-name">Analytics</span>
                     </a></li>
                 <li id="messagebroadcast"><a href="#">
-                    <i class="fa-regular fa-message"></i>
+                        <i class="fa-regular fa-message"></i>
                         <span class="link-name">Message BroadCast</span>
                     </a></li>
                 <li><a href="#">
@@ -92,6 +92,11 @@
                 <input type="text" placeholder="Search here...">
             </div>
 
+            <div>
+                <i class="fa-regular fa-clock"></i>
+                <span id="clock"></span>
+            </div>
+
             <!--<img src="images/profile.jpg" alt="">-->
         </div>
 
@@ -113,46 +118,73 @@
                     <div class="box box2">
                         <i class="fa-solid fa-person"></i>
                         <span class="text">Number of Logins</span>
-                        <span class="number"><%=logins%></span>
+                        <span class="number">
+                            <%=logins%>
+                        </span>
                     </div>
                     <div class="box box3">
                         <i class="fa-solid fa-people-group"></i>
                         <span class="text">Age Group(less than 25) : </span>
-                        <span class="number">A<%=ageGroups.group1%></span>
+                        <span class="number">
+                            <%=ageGroups.group1%>
+                        </span>
                     </div>
                     <div class="box box1">
                         <i class="fa-solid fa-people-group"></i>
                         <span class="text">Age Group(25-50) : </span>
-                        <span class="number"><%=ageGroups.group2%></span>
+                        <span class="number">
+                            <%=ageGroups.group2%>
+                        </span>
                     </div>
                     <div class="box box2">
                         <i class="fa-solid fa-people-group"></i>
                         <span class="text">Age Group(greater than 50)</span>
-                        <span class="number"><%=ageGroups.group3%></span>
+                        <span class="number">
+                            <%=ageGroups.group3%>
+                        </span>
                     </div>
 
                     <div class="box box3">
                         <i class="fa-solid fa-people-group"></i>
                         <span class="text">BMI(underweight)</span>
-                        <span class="number"><%=bmiRanges.underweight%></span>
+                        <span class="number">
+                            <%=bmiRanges.underweight%>
+                        </span>
                     </div>
 
                     <div class="box box1">
                         <i class="fa-solid fa-people-group"></i>
                         <span class="text">BMI(normal)</span>
-                        <span class="number"><%=bmiRanges.normal%></span>
+                        <span class="number">
+                            <%=bmiRanges.normal%>
+                        </span>
                     </div>
 
                     <div class="box box2">
                         <i class="fa-solid fa-people-group"></i>
                         <span class="text">BMI(overweight)</span>
-                        <span class="number"><%=bmiRanges.overweight%></span>
+                        <span class="number">
+                            <%=bmiRanges.overweight%>
+                        </span>
                     </div>
 
                     <div class="box box3">
                         <i class="fa-solid fa-people-group"></i>
                         <span class="text">BMI(obese)</span>
-                        <span class="number"><%=bmiRanges.obese%></span>
+                        <span class="number">
+                            <%=bmiRanges.obese%>
+                        </span>
+                    </div>
+
+                    <div class="box box3">
+                        <form action="/admin/getuniquevisitors/">
+                            <i class="fa-solid fa-people-group"></i>
+                            <span class="text">unique users</span>
+                            <span id="clock" name="admintime"></span>
+                            <span class="number"></span>
+                            <button class="buttonuser">Get Data</button>
+                            <span id="uniqueusers"></span>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -182,36 +214,52 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <% totalUsers.forEach((data) => { %>
-                        <tr>
-                            <td class="names"><span class="data-title"><%= data.name %></span></td>
-                            <td class="email"><span class="data-title"><%= data.email %></span></td>
-                            <td class="joined"><span class="data-title"><%= data.phoneno %></span></td>
-                            <td class="type"><span class="data-title"><%= data.gender %></span></td>
-                            <td class="status"><span class="data-title"><%= data.refer %></span></td>
-                            <td class="status"><span class="data-title"><%= data.height %></span></td>
-                            <td class="status"><span class="data-title"><%= data.weight %></span></td>
-                            <td class="status"><span class="data-title"><%= data.age %></span></td>
-                            <td class="status"><span class="data-delete">
-                                <form method="post" action="/admin/<%=data.id %>?_method=DELETE">
-                                    <button class="buttonuser" role="button">DELETE</button>
-                                </form>
-                               
-                            </td>
-                            <td class="status"><span class="data-edit">
-                                <form method="get" action="/admin/edituser/<%= data.id%>">
-                                    <button class="buttonuser" role="button">Edit!</button>
-                                </form>
-                            </td>
-                        </tr>
-                        <% }) %>
+                        <% totalUsers.forEach((data)=> { %>
+                            <tr>
+                                <td class="names"><span class="data-title">
+                                        <%= data.name %>
+                                    </span></td>
+                                <td class="email"><span class="data-title">
+                                        <%= data.email %>
+                                    </span></td>
+                                <td class="joined"><span class="data-title">
+                                        <%= data.phoneno %>
+                                    </span></td>
+                                <td class="type"><span class="data-title">
+                                        <%= data.gender %>
+                                    </span></td>
+                                <td class="status"><span class="data-title">
+                                        <%= data.refer %>
+                                    </span></td>
+                                <td class="status"><span class="data-title">
+                                        <%= data.height %>
+                                    </span></td>
+                                <td class="status"><span class="data-title">
+                                        <%= data.weight %>
+                                    </span></td>
+                                <td class="status"><span class="data-title">
+                                        <%= data.age %>
+                                    </span></td>
+                                <td class="status"><span class="data-delete">
+                                        <form method="post" action="/admin/<%=data.id %>?_method=DELETE">
+                                            <button class="buttonuser" role="button">DELETE</button>
+                                        </form>
+
+                                </td>
+                                <td class="status"><span class="data-edit">
+                                        <form method="get" action="/admin/edituser/<%= data.id%>">
+                                            <button class="buttonuser" role="button">Edit!</button>
+                                        </form>
+                                </td>
+                            </tr>
+                            <% }) %>
                     </tbody>
                 </table>
-                
+
             </div>
         </div>
-        
-        <div class = "messagebroadcastdiv">
+
+        <div class="messagebroadcastdiv">
             <form action="/whatsapp" method="post">
                 <textarea name="msg"></textarea>
                 <button type="submit">Submit Message</button>
@@ -220,8 +268,8 @@
     </section>
 
     <!--yaha se kaam-->
-    
-    
+
+
 
     <script src="../public/script.js"></script>
 </body>
