@@ -98,24 +98,24 @@
 
       <p class="title">Welcome back</p>
       <form class="form" method="post" action="/details">
-        <input type="text" class="input" name="username" placeholder="Name" />
-        <input type="number" class="input" name="age" placeholder="Age" />
-        <select class="input" name="gender">
+        <input type="text" class="input" name="username" placeholder="Name" required/>
+        <input type="number" class="input" name="age" placeholder="Age" required/>
+        <select class="input" name="gender" required>
           <option value="" disabled selected hidden>Gender</option>
           <option value="male">Male</option>
           <option value="female">Female</option>
           <option value="other">Other</option>
         </select>
-        <input type="number" class="input" name="height" placeholder="Height (in cm)" />
-        <input type="number" class="input" name="weight" placeholder="Weight (in kg)" />
-        <input type="tel" class="input" name="phoneno" placeholder="Phone Number" />
+        <input type="number" class="input" name="height" placeholder="Height (in cm)" required/>
+        <input type="number" class="input" name="weight" placeholder="Weight (in kg)" required/>
+        <input type="tel" class="input" name="phoneno" placeholder="Phone Number" required/>
         <label for="state">Select a state:</label>
-        <select id="state" name="state" class="input">
+        <select id="state" name="country" class="input" required>
           <option value="select">select</option>
         </select>
         <!-- Options will be added dynamically using JavaScript -->
         </select>
-        <input type="text" class="input" name="reffered" placeholder="How Did You Hear About US!" required />
+        <input type="text" class="input" name="reffered" placeholder="How Did You Hear About US!" required/>
         <button class="form-btn">Proceed to Website</button>
       </form>
 
