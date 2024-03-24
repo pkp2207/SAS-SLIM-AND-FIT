@@ -10,7 +10,8 @@ let userschema = mongoose.Schema({
     age: Number,
     counter:Number,
     refer: String,
-    state:String
+    state:String,
+    admin:String
 });
 
 let user = mongoose.model('user',userschema);
