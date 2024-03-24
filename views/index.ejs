@@ -61,7 +61,6 @@
                         <i class="uil uil-comments"></i>
                         <span class="link-name">Message</span>
                     </a></li>
-
             </ul>
 
             <ul class="logout-mode">
@@ -105,21 +104,55 @@
 
                 <div class="boxes">
                     <div class="box box1">
-                        <i class="uil uil-thumbs-up"></i>
+                        <i class="fa-regular fa-user"></i>
                         <span class="text">Users</span>
                         <span class="number">
                             <%=totalUsers.length%>
                         </span>
                     </div>
                     <div class="box box2">
-                        <i class="uil uil-comments"></i>
+                        <i class="fa-solid fa-person"></i>
                         <span class="text">Number of Logins</span>
-                        <span class="number"></span>
+                        <span class="number"><%=logins%></span>
                     </div>
                     <div class="box box3">
-                        <i class="uil uil-share"></i>
-                        <span class="text">Age Group</span>
-                        <span class="number">54</span>
+                        <i class="fa-solid fa-people-group"></i>
+                        <span class="text">Age Group(less than 25) : </span>
+                        <span class="number">A<%=ageGroups.group1%></span>
+                    </div>
+                    <div class="box box1">
+                        <i class="fa-solid fa-people-group"></i>
+                        <span class="text">Age Group(25-50) : </span>
+                        <span class="number"><%=ageGroups.group2%></span>
+                    </div>
+                    <div class="box box2">
+                        <i class="fa-solid fa-people-group"></i>
+                        <span class="text">Age Group(greater than 50)</span>
+                        <span class="number"><%=ageGroups.group3%></span>
+                    </div>
+
+                    <div class="box box3">
+                        <i class="fa-solid fa-people-group"></i>
+                        <span class="text">BMI(underweight)</span>
+                        <span class="number"><%=bmiRanges.underweight%></span>
+                    </div>
+
+                    <div class="box box1">
+                        <i class="fa-solid fa-people-group"></i>
+                        <span class="text">BMI(normal)</span>
+                        <span class="number"><%=bmiRanges.normal%></span>
+                    </div>
+
+                    <div class="box box2">
+                        <i class="fa-solid fa-people-group"></i>
+                        <span class="text">BMI(overweight)</span>
+                        <span class="number"><%=bmiRanges.overweight%></span>
+                    </div>
+
+                    <div class="box box3">
+                        <i class="fa-solid fa-people-group"></i>
+                        <span class="text">BMI(obese)</span>
+                        <span class="number"><%=bmiRanges.obese%></span>
                     </div>
                 </div>
             </div>

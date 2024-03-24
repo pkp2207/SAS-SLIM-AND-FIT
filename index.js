@@ -167,7 +167,6 @@ app.get("/admin", async (req, res) => {
         ageGroups: ageGroups,
         averageBMI: averageBMI,
         logins:totallogins
-
       });
     } else {
       res.redirect('/logout');
