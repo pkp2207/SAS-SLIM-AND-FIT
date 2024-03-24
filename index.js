@@ -35,7 +35,7 @@ let nd = new date({ msg: "dhatt teri maa ki chu", time: '2024-03-24T01:59:02.208
 app.use(auth(config));
 app.use(methodOverride("_method"));
 var serverdate = new Date();
-
+var logoutdate = new Date();
 
 
 // req.isAuthenticated is provided from the auth router
@@ -46,8 +46,12 @@ app.get('/', async (req, res) => {
     res.render("once.ejs");
   } else {
     let data = req.oidc.user;
+    // console.log(data);
     let userdata = await user.find({ email: data.email });
-
+    serverdate=data.updated_at;
+    // serverdate.setHours(serverdate.getUTCHours() + 5);
+    // serverdate.setMinutes(serverdate.getUTCMinutes() + 30);
+    console.log(serverdate);
     if (userdata.length == 0) {
       res.redirect("/details");
     } else {
@@ -169,11 +173,19 @@ app.get("/admin", async (req, res) => {
         logins:totallogins
       });
     } else {
-      res.redirect('/logout');
+      res.redirect('/logout2');
     }
   }
 });
+app.get('/logout2',async (req,res)=>{
+  if (req.oidc.isAuthenticated()) {
+    let data = req.oidc.user;
+    let userData = await user.find({ email: data.email });
+    console.log(userData);
+    res.render("editDetails.ejs", { userData });
+  } 
 
+})
 
 app.get('/profile', requiresAuth(), async (req, res) => {
   var datar = req.oidc.user;
