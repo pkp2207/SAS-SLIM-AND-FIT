@@ -101,10 +101,25 @@ app.patch('/editdetails/:id', async (req, res) => {
 
 
 app.get("/admin", async (req, res) => {
-  let totalUsers = await user.find();
-  console.log(totalUsers);
-  res.render("index.ejs",{totalUsers});
-})
+  // res.render("index.ejs",{totalUsers});
+  let verified = req.oidc.isAuthenticated();
+  if(!verified){
+    res.redirect('/login');
+  } else{
+    let totalUsers = await user.find();
+
+    let data = req.oidc.user;
+    let userdata = await user.find({email: data.email});
+    // console.log(userdata);
+   if(userdata.length == 1 && userdata[0].admin=="yes") {
+    res.render("index.ejs",{totalUsers});
+   }else{
+    res.redirect('/logout');
+    
+   
+  }
+  
+}})
 
 app.get('/profile', requiresAuth(), async(req, res) => {
     var datar = req.oidc.user;
