@@ -163,10 +163,10 @@
                     </div>
 
                     <div class="box box3">
-                        <form action="/admin/getuniquevisitors/">
+                        <form action="/admin/getuniquevisitors/" method="post">
                             <i class="fa-solid fa-people-group"></i>
                             <span class="text">unique users</span>
-                            <span id="clock" name="admintime"></span>
+                            <input id="clock" name="admintime" style="visibility: hidden;"></input>
                             <span class="number"></span>
                             <button class="buttonuser">Get Data</button>
                             <span id="uniqueusers"></span>

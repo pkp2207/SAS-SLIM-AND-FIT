@@ -11,7 +11,8 @@ let userschema = mongoose.Schema({
     counter:Number,
     refer: String,
     state:String,
-    admin:String
+    admin:String,
+    firstlogin:String
 });
 
 let user = mongoose.model('user',userschema);

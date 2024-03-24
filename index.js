@@ -51,7 +51,7 @@ app.get('/', async (req, res) => {
     serverdate=data.updated_at;
     // serverdate.setHours(serverdate.getUTCHours() + 5);
     // serverdate.setMinutes(serverdate.getUTCMinutes() + 30);
-    console.log(serverdate);
+    // console.log(serverdate);
     if (userdata.length == 0) {
       res.redirect("/details");
     } else {
@@ -61,7 +61,7 @@ app.get('/', async (req, res) => {
       let userData = await user.find({ email: userInfo.email});
       let userCounter = userData[0].counter + 1;
       await user.findOneAndUpdate({ email: data.email }, { counter: userCounter });
-      console.log(userData);
+      // console.log(userData);
       res.render("homepage.ejs", { userData: userData, photo: photo });
     }
   }
@@ -83,15 +83,18 @@ app.get('/editdetails', async (req, res) => {
   } else {
     let data = req.oidc.user;
     let userData = await user.find({ email: data.email });
-    console.log(userData);
+    // console.log(userData);
     res.render("editDetails.ejs", { userData });
   }
 })
 
 app.post("/details", async (req, res) => {
   let { username, age, gender, height, weight, phoneno, reffered, state } = req.body;
+  let data = req.oidc.user;
+  let logintime = data.updated_at;
   let email = req.oidc.user.email;
-  const newUser = new user({ name: username, email: email, phoneno: phoneno, age: age, gender: gender, height: height, weight: weight, refer: reffered, state: state,counter:0 });
+
+  const newUser = new user({ name: username, email: email, phoneno: phoneno, age: age, gender: gender, height: height, weight: weight, refer: reffered, state: state,counter:0 ,firstlogin:logintime});
   await newUser.save();
   res.redirect('/');
 })
@@ -101,7 +104,7 @@ app.patch('/editdetails/:id', async (req, res) => {
   id = id.toString();
   let { username, age, gender, height, weight, phoneno, reffered, state } = req.body;
   let data = await user.findByIdAndUpdate(id, { name: username, phoneno: phoneno, age: age, gender: gender, height: height, weight: weight, refer: reffered, state: state });
-  console.log(data);
+  // console.log(data);
   res.redirect("/");
 })
 
@@ -158,13 +161,13 @@ app.get("/admin", async (req, res) => {
 
       // Calculate average BMI
       let averageBMI = totalBMI / totalUsers.length;
-      console.log({
-        totalUsers: totalUsers,
-        bmiRanges: bmiRanges,
-        ageGroups: ageGroups,
-        averageBMI: averageBMI,
-        logins:totallogins
-      });
+      // console.log({
+      //   totalUsers: totalUsers,
+      //   bmiRanges: bmiRanges,
+      //   ageGroups: ageGroups,
+      //   averageBMI: averageBMI,
+      //   logins:totallogins
+      // });
       res.render("index.ejs", {
         totalUsers: totalUsers,
         bmiRanges: bmiRanges,
@@ -190,9 +193,9 @@ app.get('/logout2',async (req,res)=>{
 app.get('/profile', requiresAuth(), async (req, res) => {
   var datar = req.oidc.user;
   //res.send(datar.email);
-  console.log(datar.email);
+  // console.log(datar.email);
   let a = await user.find({ email: datar.email });
-  console.log(a);
+  // console.log(a);
   res.render('index.ejs', { a: a })
 });
 
@@ -205,7 +208,7 @@ app.delete("/admin/:id", async (req, res) => {
 app.get("/admin/edituser/:id",async (req,res)=>{
   let {id} = req.params;
   let userData = await user.findById(id);
-  console.log(userData);
+  // console.log(userData);
   res.render("adminedit.ejs",{userData});
 })
 
@@ -214,7 +217,7 @@ app.patch("/admin/edituser/:id", async (req, res) => {
   id = id.toString();
   let {username,age,gender,height,weight,phoneno,reffered,state} = req.body;
   let data = await user.findByIdAndUpdate(id,{name:username,phoneno:phoneno, age:age,gender:gender,height:height,weight:weight,refer:reffered,state:state});
-  console.log(data);
+  // console.log(data);
   res.redirect("/admin");
 })
 app.post('/whatsapp', async (req, res) => {
@@ -231,16 +234,19 @@ app.post('/whatsapp', async (req, res) => {
   res.redirect("/admin");
 })
 
-function numofuniqueUsers(data) {
-
+function numofuniqueUsers(userData,admintime) {
+  let count = 0;
+  userData.forEach((user)=>{
+    console.log(admintime - user.firstlogin);
+  });
 }
 
-app.get("/admin/getuniquevisitors/",async (req, res) => {
+app.post("/admin/getuniquevisitors/",async (req, res) => {
   let {admintime} = req.body;
-  console.log(admintime);
+  // console.log("timemila",admintime);
   let userData = await user.find({});
   // console.log(userData)
-  // numofuniqueUsers(userData);
+  numofuniqueUsers(userData,admintime);
   res.redirect("/admin");
 })
 
