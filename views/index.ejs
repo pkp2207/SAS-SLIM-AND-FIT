@@ -14,6 +14,9 @@
 
     <!----===== Iconscout CSS ===== -->
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+    <!--font awesome link-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
 
     <title>Admin Dashboard Panel</title>
 
@@ -50,9 +53,9 @@
                         <i class="uil uil-chart"></i>
                         <span class="link-name">Analytics</span>
                     </a></li>
-                <li><a href="#">
-                        <i class="uil uil-thumbs-up"></i>
-                        <span class="link-name">Like</span>
+                <li id="messagebroadcast"><a href="#">
+                    <i class="fa-regular fa-message"></i>
+                        <span class="link-name">Message BroadCast</span>
                     </a></li>
                 <li><a href="#">
                         <i class="uil uil-comments"></i>
@@ -121,108 +124,71 @@
                 </div>
             </div>
 
-            <div class="activity">
-                <div class="title">
-                    <i class="uil uil-clock-three"></i>
-                    <span class="text">User Details</span>
-                </div>
 
-                <div class="activity-data">
-                    <div class="data names">
-                        <span class="data-title">Name</span>
-                        <%totalUsers.forEach((x)=>{%>
+        </div>
 
-                        <span class="data-title">
-                                <%=x.name%>
-                                
-                        </span>
-                        <%})%>
-
-
-
-
-                    </div>
-                    <div class="data email">
-                        <span class="data-title">Email</span>
-                        <%totalUsers.forEach((x)=>{%>
-
-                            <span class="data-title">
-                                    <%=x.email%>
-                                    
-                            </span>
-                            <%})%>
-
-                    </div>
-                    <div class="data joined">
-                        <span class="data-title">Phone No.</span>
-                        <%totalUsers.forEach((x)=>{%>
-
-                            <span class="data-title">
-                                    <%=x.phoneno%>
-                                    
-                            </span>
-                            <%})%>
-
-                    </div>
-                    <div class="data type">
-                        <span class="data-title">Gender</span>
-                        <%totalUsers.forEach((x)=>{%>
-
-                            <span class="data-title">
-                                    <%=x.gender%>
-                                    
-                            </span>
-                            <%})%>
-
-                    </div>
-                    <div class="data status">
-                        <span class="data-title">Referrals</span>
-                        <%totalUsers.forEach((x)=>{%>
-
-                            <span class="data-title">
-                                    <%=x.refer%>
-                                    
-                            </span>
-                            <%})%>
-
-                    </div>
-                    <div class="data status">
-                        <span class="data-title">Height</span>
-                        <%totalUsers.forEach((x)=>{%>
-
-                            <span class="data-title">
-                                    <%=x.height%>
-                                    
-                            </span>
-                            <%})%>
-
-                    </div>
-                    <div class="data status">
-                        <span class="data-title">Weight</span>
-                        <%totalUsers.forEach((x)=>{%>
-
-                            <span class="data-title">
-                                    <%=x.weight%>
-                                    
-                            </span>
-                            <%})%>
-
-                    </div>
-                    <div class="data status">
-                        <span class="data-title">Age</span>
-                        <%totalUsers.forEach((x)=>{%>
-
-                            <span class="data-title">
-                                    <%=x.age%>
-                                    
-                            </span>
-                            <%})%>
-
-                    </div>
-                </div>
+        <div class="activity">
+            <div class="title">
+                <i class="uil uil-clock-three"></i>
+                <span class="text">User Details</span>
+            </div>
+            <div class="activity-data">
+                <table>
+                    <thead>
+                        <tr>
+                            <th class="names">Name</th>
+                            <th class="email">Email</th>
+                            <th class="joined">Phone No.</th>
+                            <th class="type">Gender</th>
+                            <th class="status">Referrals</th>
+                            <th class="status">Height</th>
+                            <th class="status">Weight</th>
+                            <th class="status">Age</th>
+                            <th class="Delete">Delete User</th>
+                            <th class="Edit">Edit User</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% totalUsers.forEach((data) => { %>
+                        <tr>
+                            <td class="names"><span class="data-title"><%= data.name %></span></td>
+                            <td class="email"><span class="data-title"><%= data.email %></span></td>
+                            <td class="joined"><span class="data-title"><%= data.phoneno %></span></td>
+                            <td class="type"><span class="data-title"><%= data.gender %></span></td>
+                            <td class="status"><span class="data-title"><%= data.refer %></span></td>
+                            <td class="status"><span class="data-title"><%= data.height %></span></td>
+                            <td class="status"><span class="data-title"><%= data.weight %></span></td>
+                            <td class="status"><span class="data-title"><%= data.age %></span></td>
+                            <td class="status"><span class="data-delete">
+                                <form method="post" action="/admin/<%=data.id %>?_method=DELETE">
+                                    <button class="buttonuser" role="button">DELETE</button>
+                                </form>
+                               
+                            </td>
+                            <td class="status"><span class="data-edit">
+                                <form method="get" action="/admin/edituser/<%= data.id%>">
+                                    <button class="buttonuser" role="button">Edit!</button>
+                                </form>
+                            </td>
+                        </tr>
+                        <% }) %>
+                    </tbody>
+                </table>
+                
             </div>
         </div>
+        
+        <div class = "messagebroadcastdiv">
+            <form action="">
+                <textarea></textarea>
+                <button type="submit">Submit Message</button>
+            </form>
+        </div>
     </section>
+
+    <!--yaha se kaam-->
+    
+    
 
     <script src="../public/script.js"></script>
 </body>

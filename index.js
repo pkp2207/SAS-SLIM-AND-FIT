@@ -115,6 +115,28 @@ app.get('/profile', requiresAuth(), async(req, res) => {
     res.render('index.ejs',{a:a}) 
   });
 
+app.delete("/admin/:id", async (req, res) => {
+  let {id} = req.params;
+  let data = await user.findByIdAndDelete(id);
+  res.redirect("/admin");
+})
+
+app.get("/admin/edituser/:id",async (req,res)=>{
+  let {id} = req.params;
+  let userData = await user.findById(id);
+  console.log(userData);
+  res.render("adminedit.ejs",{userData});
+})
+
+app.patch("/admin/edituser/:id", async (req, res) => {
+  let {id} = req.params;
+  id = id.toString();
+  let {username,age,gender,height,weight,phoneno,reffered,state} = req.body;
+  let data = await user.findByIdAndUpdate(id,{name:username,phoneno:phoneno, age:age,gender:gender,height:height,weight:weight,refer:reffered,state:state});
+  console.log(data);
+  res.redirect("/admin");
+})
+
 app.listen(3000,()=>{
     console.log("listening on http://localhost:3000");
 })
