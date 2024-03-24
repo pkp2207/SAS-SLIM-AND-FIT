@@ -1437,7 +1437,7 @@ footer p a:hover {
   color: #37e403;
 }
 .footer-top {
-  display: flex;
+  /* display: flex; */
   justify-content: space-between;
   /* Align lists to the left and right */
 }
@@ -2287,7 +2287,8 @@ body {
 }
 
 .footer-list {
-  display: grid;
+  display: flex;
+  justify-content: center;
   gap: 20px;
 }
 

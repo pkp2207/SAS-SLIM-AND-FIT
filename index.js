@@ -184,7 +184,7 @@ app.get('/logout2',async (req,res)=>{
   if (req.oidc.isAuthenticated()) {
     let data = req.oidc.user;
     let userData = await user.find({ email: data.email });
-    console.log(userData);
+    // console.log(userData);
     res.render("editDetails.ejs", { userData });
   } 
 
@@ -233,12 +233,37 @@ app.post('/whatsapp', async (req, res) => {
   })
   res.redirect("/admin");
 })
+function getMonthFromDate(dateString) {
+  const date = new Date(dateString);
+  const monthNumber = date.getMonth() + 1; // Adding 1 because months are zero-indexed
+  return monthNumber;
+}
+
+
+const dateString = 'Sun Mar 24 2024 11:18:42 GMT+0530 (India Standard Time)';
+
 
 function numofuniqueUsers(userData,admintime) {
   let count = 0;
+  // console.log(admintime);
+  let adminyear = admintime.slice(11,15);
+  // let adminmonth = getMonthFromDate(admintime);
+  // let admindays = admintime.slice(8,10);
+  let eachMonthData = new Array(12).fill(0)
+  // console.log(eachMonthData);
+  // console.log(admindays,adminyear,adminmonth);
   userData.forEach((user)=>{
-    console.log(admintime - user.firstlogin);
+    // console.log(user.firstlogin);
+    let logindetail = user.firstlogin.toString();
+    let year = logindetail.slice(0,4);
+    let month = logindetail.slice(5,7);
+    let days = logindetail.slice(8,10);
+    // console.log(year,month,days);
+    if(adminyear==year){
+      eachMonthData[month - 1] = eachMonthData[month - 1] + 1;
+    }
   });
+  return eachMonthData;
 }
 
 app.post("/admin/getuniquevisitors/",async (req, res) => {
@@ -246,8 +271,24 @@ app.post("/admin/getuniquevisitors/",async (req, res) => {
   // console.log("timemila",admintime);
   let userData = await user.find({});
   // console.log(userData)
-  numofuniqueUsers(userData,admintime);
-  res.redirect("/admin");
+  let eachMonthData = numofuniqueUsers(userData,admintime);
+  console.log(eachMonthData);
+  const months = [
+    { month: 'January', users: eachMonthData[0] },
+    { month: 'February', users: eachMonthData[1] },
+    { month: 'March', users: eachMonthData[2] },
+    { month: 'April', users: eachMonthData[3] },
+    { month: 'May', users: eachMonthData[4] },
+    { month: 'June', users: eachMonthData[5] },
+    { month: 'July', users: eachMonthData[6] },
+    { month: 'August', users: eachMonthData[7] },
+    { month: 'September', users: eachMonthData[8] },
+    { month: 'October', users: eachMonthData[9] },
+    { month: 'November', users: eachMonthData[10] },
+    { month: 'December', users: eachMonthData[11] }
+  ];
+  console.log(months);
+  res.render("newusers.ejs",{months});
 })
 
 app.listen(3000,()=>{

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!----======== CSS ======== -->
+    <link rel="stylesheet" href="../public/style.css">
+
+    <!----===== Iconscout CSS ===== -->
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+    <!--font awesome link-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+
+    <title>Admin Dashboard Panel</title>
+
+    <!----======== CSS ======== -->
+    <link rel="stylesheet" href="../public/style.css">
+
+    <!----===== Iconscout CSS ===== -->
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+
+    <title>Admin Dashboard Panel</title>
+</head>
+
+<body>
+
+    <section class="dashboard">
+
+        <div>
+            <table>
+                <thead>
+                    <tr>
+                        <th class="month">Month Name</th>
+                        <th class="users">Registered Users</th>
+                    </tr>
+                </thead>
+                <tbody>
+                   
+                    <% months.forEach((data)=> { %>
+                        <tr>
+                            <td class="names"><span class="data-title">
+                                    <%= data.month %></span> 
+                                </span></td>
+                            <td class="email"><span class="data-title">
+                                    <%= data.users %>
+                                </span></td>
+                        </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+        </div> 
+    </section>
+
+    <!--yaha se kaam-->
+
+
+
+    <script src="../public/script.js"></script>
+</body>
+
+</html>

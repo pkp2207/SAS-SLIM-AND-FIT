@@ -31,7 +31,7 @@ messagebroadcast.addEventListener("click",()=>{
 let date = new Date();
 let span = document.querySelectorAll("#clock");
 date=date.toString();
-// date = date.slice(0,15);
+date = date.slice(0,15);
 console.log(span);
 span[0].innerHTML= date;
 span[1].value= date;
