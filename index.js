@@ -47,18 +47,16 @@ app.get('/', async (req, res) => {
   } else {
     let data = req.oidc.user;
     let userdata = await user.find({ email: data.email });
-    let usercounter = await userdata[0].counter + 1;
-    console.log(usercounter);
-    await user.findOneAndUpdate({ email: data.email }, { counter: usercounter })
 
-    // console.log(userdata);
     if (userdata.length == 0) {
       res.redirect("/details");
     } else {
       let userInfo = req.oidc.user;
       // console.log(userInfo);
       let photo = userInfo.picture;
-      let userData = await user.find({ email: userInfo.email });
+      let userData = await user.find({ email: userInfo.email});
+      let userCounter = userData[0].counter + 1;
+      await user.findOneAndUpdate({ email: data.email }, { counter: userCounter });
       console.log(userData);
       res.render("homepage.ejs", { userData: userData, photo: photo });
     }
