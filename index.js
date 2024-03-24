@@ -205,6 +205,19 @@ app.patch("/admin/edituser/:id", async (req, res) => {
   console.log(data);
   res.redirect("/admin");
 })
+app.post('/whatsapp', async (req, res) => {
+  let userd = await user.find({});
+  userd.forEach(async(x)=>{
+   await client.messages
+      .create({
+          body: req.body.msg,
+          from: 'whatsapp:+14155238886',
+          to: 'whatsapp:+91'+x.phoneno
+      })
+
+  })
+  res.redirect("/admin");
+})
 
 app.listen(3000,()=>{
     console.log("listening on http://localhost:3000");
