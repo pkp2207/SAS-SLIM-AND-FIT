@@ -4,8 +4,7 @@ const bp = require('body-parser');
 const user = require('./models/userschema.js');
 const mongoose = require('mongoose');
 const path = require('path');
-//aenter client id and auth token of twilio here
-const client = require('twilio')(accountSid, authToken);
+//enter client id and auth token of whatsaap details here
 const mongoDB = 'mongodb+srv://httwarriors12:akshat@cluster0.n9sknas.mongodb.net/hacktt';
 const methodOverride = require("method-override");
 mongoose.connect(mongoDB);
@@ -26,9 +25,8 @@ const config = {
   clientID: 'ouN2IFII0oE7eWZF3UgPaaaXuLe6nnK4',
   issuerBaseURL: 'https://dev-ktrnto3xhx5pfgg2.us.auth0.com'
 };
+
 let date = mongoose.model('Date', { msg: String, time: String });
-let nd = new date({ msg: "dhatt teri maa ki chu", time: '2024-03-24T01:59:02.208Z' })
-// nd.save();
 
 // auth router attaches /login, /logout, and /callback routes to the baseURL
 app.use(auth(config));
@@ -110,13 +108,11 @@ app.patch('/editdetails/:id', async (req, res) => {
 
 // BMI Calculation Function
 function calculateBMI(weight, height) {
-  // Convert height to meters
+
   height /= 100;
-  // Calculate BMI
   return weight / (height * height);
 }
 
-// Admin Route to Calculate BMI Range, Average BMI, and Age Groups
 app.get("/admin", async (req, res) => {
   let verified = req.oidc.isAuthenticated();
   if (!verified) {
@@ -132,12 +128,11 @@ app.get("/admin", async (req, res) => {
       let totalBMI = 0;
       let totallogins = 0;
 
-      // Calculate BMI and categorize users
       totalUsers.forEach((user) => {
         let bmi = calculateBMI(user.weight, user.height);
         totalBMI += bmi;
         totallogins += user.counter;
-        // Categorize users based on BMI
+
         if (bmi < 18.5) {
           bmiRanges.underweight++;
         } else if (bmi >= 18.5 && bmi < 25) {
@@ -148,7 +143,6 @@ app.get("/admin", async (req, res) => {
           bmiRanges.obese++;
         }
 
-        // Categorize users based on age groups provided by you
         if (user.age < 25) {
           ageGroups.group1++;
         } else if (user.age >= 25 && user.age < 50) {
