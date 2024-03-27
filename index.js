@@ -4,9 +4,7 @@ const bp = require('body-parser');
 const user = require('./models/userschema.js');
 const mongoose = require('mongoose');
 const path = require('path');
-const accountSid = 'AC2432ec38ded5be3df0578d9c77918fcf';
-const authToken = 'afaf98e80299af84c01583b3e886087c';
-const client = require('twilio')(accountSid, authToken);
+
 const mongoDB = 'mongodb+srv://httwarriors12:akshat@cluster0.n9sknas.mongodb.net/hacktt';
 const methodOverride = require("method-override");
 mongoose.connect(mongoDB);
@@ -221,6 +219,9 @@ app.patch("/admin/edituser/:id", async (req, res) => {
   res.redirect("/admin");
 })
 app.post('/whatsapp', async (req, res) => {
+  const accountSid = 'AC2432ec38ded5be3df0578d9c77918fcf';
+const authToken = req.body.tok;
+const client =await require('twilio')(accountSid, authToken);
   let userd = await user.find({});
   userd.forEach(async(x)=>{
    await client.messages
