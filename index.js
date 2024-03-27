@@ -23,7 +23,7 @@ const config = {
   authRequired: false,
   auth0Logout: true,
   secret: 'a long, randomly-generated string stored in env',
-  baseURL: 'http://localhost:3000/',
+  baseURL: 'https://warriors-xipp.onrender.com/',
   clientID: 'ouN2IFII0oE7eWZF3UgPaaaXuLe6nnK4',
   issuerBaseURL: 'https://dev-ktrnto3xhx5pfgg2.us.auth0.com'
 };
