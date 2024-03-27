@@ -1,4 +1,4 @@
-# SAS Fit To Slim (Deployment Link https://warriors-xipp.onrender.com/)
+# SAS Fit To Slim
 
 ## Project Description
 
