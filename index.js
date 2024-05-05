@@ -4,10 +4,8 @@ const bp = require('body-parser');
 const user = require('./models/userschema.js');
 const mongoose = require('mongoose');
 const path = require('path');
+
 const mongoDB = 'mongodb+srv://httwarriors12:akshat@cluster0.n9sknas.mongodb.net/hacktt';
-const accountSid = 'AC2432ec38ded5be3df0578d9c77918fcf';
-const authToken = '8f651e17b2fb29e53aaa7243589ccb54';
-const client = require('twilio')(accountSid, authToken);
 const methodOverride = require("method-override");
 mongoose.connect(mongoDB);
 
@@ -20,7 +18,7 @@ const config = {
   authRequired: false,
   auth0Logout: true,
   secret: 'a long, randomly-generated string stored in env',
-  baseURL: 'http://localhost:3000/',
+  baseURL: 'https://warriors-xipp.onrender.com/',
   clientID: 'ouN2IFII0oE7eWZF3UgPaaaXuLe6nnK4',
   issuerBaseURL: 'https://dev-ktrnto3xhx5pfgg2.us.auth0.com'
 };
@@ -215,6 +213,9 @@ app.patch("/admin/edituser/:id", async (req, res) => {
 
 
 app.post('/whatsapp', async (req, res) => {
+  const accountSid = 'AC2432ec38ded5be3df0578d9c77918fcf';
+const authToken = req.body.tok;
+const client =await require('twilio')(accountSid, authToken);
   let userd = await user.find({});
   userd.forEach(async(x)=>{
    await client.messages
@@ -288,3 +289,20 @@ app.post("/admin/getuniquevisitors/",async (req, res) => {
 app.listen(3000,()=>{
     console.log("listening on http://localhost:3000");
 })
+
+
+
+
+//TWILIO
+// const accountSid = 'AC2432ec38ded5be3df0578d9c77918fcf';
+// const authToken = afaf98e80299af84c01583b3e886087c;
+// const client = require('twilio')(accountSid, authToken);
+
+// client.messages
+//     .create({
+//         body: 'Your appointment is coming up on July 21 at 3PM',
+//         from: 'whatsapp:+14155238886',
+//         to: 'whatsapp:+916387488465'
+//     })
+//     .then(message => console.log(message.sid))
+//     .done();
