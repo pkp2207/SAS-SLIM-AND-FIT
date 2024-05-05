@@ -4,8 +4,10 @@ const bp = require('body-parser');
 const user = require('./models/userschema.js');
 const mongoose = require('mongoose');
 const path = require('path');
-//enter client id and auth token of whatsaap details here
 const mongoDB = 'mongodb+srv://httwarriors12:akshat@cluster0.n9sknas.mongodb.net/hacktt';
+const accountSid = 'AC2432ec38ded5be3df0578d9c77918fcf';
+const authToken = '8f651e17b2fb29e53aaa7243589ccb54';
+const client = require('twilio')(accountSid, authToken);
 const methodOverride = require("method-override");
 mongoose.connect(mongoDB);
 
@@ -13,9 +15,6 @@ app.use(bp.urlencoded({ extended: true }));
 app.use(express.static(__dirname));
 app.set('view engine', 'ejs');
 app.set("views", path.join(__dirname, "/views"));
-
-// var nu = new user({name:"fhkgf",email:"ghj",phno:"985585"});
-// nu.save();
 const { auth } = require('express-openid-connect');
 const config = {
   authRequired: false,
@@ -213,6 +212,8 @@ app.patch("/admin/edituser/:id", async (req, res) => {
   // console.log(data);
   res.redirect("/admin");
 })
+
+
 app.post('/whatsapp', async (req, res) => {
   let userd = await user.find({});
   userd.forEach(async(x)=>{
