@@ -4,8 +4,10 @@ const bp = require('body-parser');
 const user = require('./models/userschema.js');
 const mongoose = require('mongoose');
 const path = require('path');
-
-const mongoDB = 'mongodb+srv://httwarriors12:akshat@cluster0.n9sknas.mongodb.net/hacktt';
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config();
+}
+const mongoDB = process.env.ATLAS_URL;
 const methodOverride = require("method-override");
 mongoose.connect(mongoDB);
 
@@ -14,13 +16,14 @@ app.use(express.static(__dirname));
 app.set('view engine', 'ejs');
 app.set("views", path.join(__dirname, "/views"));
 const { auth } = require('express-openid-connect');
+
 const config = {
   authRequired: false,
   auth0Logout: true,
-  secret: 'a long, randomly-generated string stored in env',
-  baseURL: 'https://warriors-xipp.onrender.com/',
-  clientID: 'ouN2IFII0oE7eWZF3UgPaaaXuLe6nnK4',
-  issuerBaseURL: 'https://dev-ktrnto3xhx5pfgg2.us.auth0.com'
+  secret: process.env.AUTH_SECRET,
+  baseURL: process.env.AUTH_BASEURL,
+  clientID: process.env.AUTH_CLIENTID,
+  issuerBaseURL:process.env.AUTH_ISSUERBASEURL 
 };
 
 let date = mongoose.model('Date', { msg: String, time: String });
@@ -42,7 +45,7 @@ app.get('/', async (req, res) => {
     let data = req.oidc.user;
     // console.log(data);
     let userdata = await user.find({ email: data.email });
-    serverdate=data.updated_at;
+    serverdate = data.updated_at;
     // serverdate.setHours(serverdate.getUTCHours() + 5);
     // serverdate.setMinutes(serverdate.getUTCMinutes() + 30);
     // console.log(serverdate);
@@ -52,7 +55,7 @@ app.get('/', async (req, res) => {
       let userInfo = req.oidc.user;
       // console.log(userInfo);
       let photo = userInfo.picture;
-      let userData = await user.find({ email: userInfo.email});
+      let userData = await user.find({ email: userInfo.email });
       let userCounter = userData[0].counter + 1;
       await user.findOneAndUpdate({ email: data.email }, { counter: userCounter });
       // console.log(userData);
@@ -88,7 +91,7 @@ app.post("/details", async (req, res) => {
   let logintime = data.updated_at;
   let email = req.oidc.user.email;
 
-  const newUser = new user({ name: username, email: email, phoneno: phoneno, age: age, gender: gender, height: height, weight: weight, refer: reffered, state: state,counter:0 ,firstlogin:logintime});
+  const newUser = new user({ name: username, email: email, phoneno: phoneno, age: age, gender: gender, height: height, weight: weight, refer: reffered, state: state, counter: 0, firstlogin: logintime });
   await newUser.save();
   res.redirect('/');
 })
@@ -163,20 +166,20 @@ app.get("/admin", async (req, res) => {
         bmiRanges: bmiRanges,
         ageGroups: ageGroups,
         averageBMI: averageBMI,
-        logins:totallogins
+        logins: totallogins
       });
     } else {
       res.redirect('/logout2');
     }
   }
 });
-app.get('/logout2',async (req,res)=>{
+app.get('/logout2', async (req, res) => {
   if (req.oidc.isAuthenticated()) {
     let data = req.oidc.user;
     let userData = await user.find({ email: data.email });
     // console.log(userData);
     res.render("editDetails.ejs", { userData });
-  } 
+  }
 
 })
 
@@ -190,39 +193,39 @@ app.get('/profile', requiresAuth(), async (req, res) => {
 });
 
 app.delete("/admin/:id", async (req, res) => {
-  let {id} = req.params;
+  let { id } = req.params;
   let data = await user.findByIdAndDelete(id);
   res.redirect("/admin");
 })
 
-app.get("/admin/edituser/:id",async (req,res)=>{
-  let {id} = req.params;
+app.get("/admin/edituser/:id", async (req, res) => {
+  let { id } = req.params;
   let userData = await user.findById(id);
   // console.log(userData);
-  res.render("adminedit.ejs",{userData});
+  res.render("adminedit.ejs", { userData });
 })
 
 app.patch("/admin/edituser/:id", async (req, res) => {
-  let {id} = req.params;
+  let { id } = req.params;
   id = id.toString();
-  let {username,age,gender,height,weight,phoneno,reffered,state} = req.body;
-  let data = await user.findByIdAndUpdate(id,{name:username,phoneno:phoneno, age:age,gender:gender,height:height,weight:weight,refer:reffered,state:state});
+  let { username, age, gender, height, weight, phoneno, reffered, state } = req.body;
+  let data = await user.findByIdAndUpdate(id, { name: username, phoneno: phoneno, age: age, gender: gender, height: height, weight: weight, refer: reffered, state: state });
   // console.log(data);
   res.redirect("/admin");
 })
 
 
 app.post('/whatsapp', async (req, res) => {
-  const accountSid = 'AC2432ec38ded5be3df0578d9c77918fcf';
-const authToken = req.body.tok;
-const client =await require('twilio')(accountSid, authToken);
+  const accountSid = process.env.TWILIO_ACOOUNTSID;
+  const authToken = req.body.tok;
+  const client = await require('twilio')(accountSid, authToken);
   let userd = await user.find({});
-  userd.forEach(async(x)=>{
-   await client.messages
+  userd.forEach(async (x) => {
+    await client.messages
       .create({
-          body: req.body.msg,
-          from: 'whatsapp:+14155238886',
-          to: 'whatsapp:+91'+x.phoneno
+        body: req.body.msg,
+        from: process.env.TWILIO_WHATSAPPNUMBER,
+        to: 'whatsapp:+91' + x.phoneno
       })
 
   })
@@ -238,35 +241,35 @@ function getMonthFromDate(dateString) {
 const dateString = 'Sun Mar 24 2024 11:18:42 GMT+0530 (India Standard Time)';
 
 
-function numofuniqueUsers(userData,admintime) {
+function numofuniqueUsers(userData, admintime) {
   let count = 0;
   // console.log(admintime);
-  let adminyear = admintime.slice(11,15);
+  let adminyear = admintime.slice(11, 15);
   // let adminmonth = getMonthFromDate(admintime);
   // let admindays = admintime.slice(8,10);
   let eachMonthData = new Array(12).fill(0)
   // console.log(eachMonthData);
   // console.log(admindays,adminyear,adminmonth);
-  userData.forEach((user)=>{
+  userData.forEach((user) => {
     // console.log(user.firstlogin);
     let logindetail = user.firstlogin.toString();
-    let year = logindetail.slice(0,4);
-    let month = logindetail.slice(5,7);
-    let days = logindetail.slice(8,10);
+    let year = logindetail.slice(0, 4);
+    let month = logindetail.slice(5, 7);
+    let days = logindetail.slice(8, 10);
     // console.log(year,month,days);
-    if(adminyear==year){
+    if (adminyear == year) {
       eachMonthData[month - 1] = eachMonthData[month - 1] + 1;
     }
   });
   return eachMonthData;
 }
 
-app.post("/admin/getuniquevisitors/",async (req, res) => {
-  let {admintime} = req.body;
+app.post("/admin/getuniquevisitors/", async (req, res) => {
+  let { admintime } = req.body;
   // console.log("timemila",admintime);
   let userData = await user.find({});
   // console.log(userData)
-  let eachMonthData = numofuniqueUsers(userData,admintime);
+  let eachMonthData = numofuniqueUsers(userData, admintime);
   console.log(eachMonthData);
   const months = [
     { month: 'January', users: eachMonthData[0] },
@@ -283,26 +286,9 @@ app.post("/admin/getuniquevisitors/",async (req, res) => {
     { month: 'December', users: eachMonthData[11] }
   ];
   console.log(months);
-  res.render("newusers.ejs",{months});
+  res.render("newusers.ejs", { months });
 })
 
-app.listen(3000,()=>{
-    console.log("listening on http://localhost:3000");
+app.listen(3000, () => {
+  console.log("listening on http://localhost:3000");
 })
-
-
-
-
-//TWILIO
-// const accountSid = 'AC2432ec38ded5be3df0578d9c77918fcf';
-// const authToken = afaf98e80299af84c01583b3e886087c;
-// const client = require('twilio')(accountSid, authToken);
-
-// client.messages
-//     .create({
-//         body: 'Your appointment is coming up on July 21 at 3PM',
-//         from: 'whatsapp:+14155238886',
-//         to: 'whatsapp:+916387488465'
-//     })
-//     .then(message => console.log(message.sid))
-//     .done();
