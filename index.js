@@ -81,7 +81,7 @@ app.get('/editdetails', async (req, res) => {
     let data = req.oidc.user;
     let userData = await user.find({ email: data.email });
     // console.log(userData);
-    res.render("edidetails.ejs", { userData });
+    res.render("editdetails.ejs", { userData });
   }
 })
 
@@ -178,7 +178,7 @@ app.get('/logout2', async (req, res) => {
     let data = req.oidc.user;
     let userData = await user.find({ email: data.email });
     // console.log(userData);
-    res.render("editDetails.ejs", { userData });
+    res.render("editdetails.ejs", { userData });
   }
 
 })
